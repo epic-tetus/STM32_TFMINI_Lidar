@@ -43,7 +43,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "TFMINI.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -80,11 +80,6 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t frame[9];
-int dist, stre;
-uint8_t check = 0;
-uint8_t buffer[1];
-
 int fputc(int ch, FILE *f){
   uint8_t temp[1] = {ch};
   HAL_UART_Transmit(&huart1, temp, 1, 2);
@@ -124,30 +119,16 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 	printf("START\r\n");
-  
-	const uint8_t HEADER = 0x59;
 	
-//	uint8_t command[8] = {0x42, 0x57, 0x02, 0x00, 0x00, 0x00, 0x01, 0x06};
-//	
-//	HAL_UART_Transmit(&huart2, command, 8, 0xFF);
-	
+	TFMINI_Initialize(&huart2);
 	/* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		HAL_UART_Receive(&huart2, frame, 9, HAL_MAX_DELAY);
-				
-		for(int i = 0; i < 8; i++)
-			check += frame[i];
-			
-//		checksum check
-//		if(frame[8] == (check & 0xFF)){		// I think it is not necessary
-			dist = frame[2] + frame[3] * 256;
-			printf("DISTANCE = %d cm\r\n", dist);
-			printf("STRENGTH = %d\r\n", stre);
-//		}
+		printf("DISTANCE = %d cm\r\n", TFMINI_GetDistance());
+		printf("STRENGTH = %d\r\n", TFMINI_GetStrength());
 		
     /* USER CODE END WHILE */
 
@@ -274,10 +255,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-  if(huart->Instance == USART2)
-    printf("%s\r\n", frame);
-}
+
 /* USER CODE END 4 */
 
 /**

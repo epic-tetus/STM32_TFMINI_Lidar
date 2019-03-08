@@ -3,6 +3,7 @@
 "tfmini_stm32\main.o"
 "tfmini_stm32\stm32f1xx_it.o"
 "tfmini_stm32\stm32f1xx_hal_msp.o"
+"tfmini_stm32\tfmini.o"
 "tfmini_stm32\stm32f1xx_hal_gpio_ex.o"
 "tfmini_stm32\stm32f1xx_hal_tim.o"
 "tfmini_stm32\stm32f1xx_hal_tim_ex.o"
