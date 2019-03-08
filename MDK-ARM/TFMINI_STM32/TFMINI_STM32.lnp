@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"tfmini_stm32\startup_stm32f103xb.o"
+"tfmini_stm32\main.o"
+"tfmini_stm32\stm32f1xx_it.o"
+"tfmini_stm32\stm32f1xx_hal_msp.o"
+"tfmini_stm32\stm32f1xx_hal_gpio_ex.o"
+"tfmini_stm32\stm32f1xx_hal_tim.o"
+"tfmini_stm32\stm32f1xx_hal_tim_ex.o"
+"tfmini_stm32\stm32f1xx_hal_uart.o"
+"tfmini_stm32\stm32f1xx_hal.o"
+"tfmini_stm32\stm32f1xx_hal_rcc.o"
+"tfmini_stm32\stm32f1xx_hal_rcc_ex.o"
+"tfmini_stm32\stm32f1xx_hal_gpio.o"
+"tfmini_stm32\stm32f1xx_hal_dma.o"
+"tfmini_stm32\stm32f1xx_hal_cortex.o"
+"tfmini_stm32\stm32f1xx_hal_pwr.o"
+"tfmini_stm32\stm32f1xx_hal_flash.o"
+"tfmini_stm32\stm32f1xx_hal_flash_ex.o"
+"tfmini_stm32\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "TFMINI_STM32\TFMINI_STM32.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "TFMINI_STM32.map" -o TFMINI_STM32\TFMINI_STM32.axf
